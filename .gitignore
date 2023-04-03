@@ -1,1 +1,9 @@
 .vs/
+StoreApi/Back/bin/
+StoreApi/Back/obj/
+StoreFront/Admin/obj/
+StoreFront/Admin/bin/
+StoreFront/Admin/Properties/
+StoreFront/FrgStore/Properties/
+StoreFront/FrgStore/bin/
+StoreFront/FrgStore/obj/
