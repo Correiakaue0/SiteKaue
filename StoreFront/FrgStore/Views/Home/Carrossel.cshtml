@@ -1,0 +1,101 @@
+﻿<!-- Carrossel -->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active carrossel">
+            <img src="~/images/BannerGolf.png"> <!-- width="1540px" height="450px" -->
+        </div>
+        <div class="carousel-item carrossel">
+            <img src="~/images/BannerGolfLB.png" >
+        </div>
+        <div class="carousel-item carrossel">
+            <img src="~/images/BannerGolf1.png" >
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- Carrossel -->
+
+    <h1 class="titulo">Produtos</h1>
+      <table id="tabela"></table>
+
+
+ <div class="album py-5 bg-light">
+    <div class="container">
+    <center>
+        <a asp-controller="Produto" asp-action="CadastroProduto" class="btn btn-outline-primary mb-3">Adicionar Produtos</a>
+
+
+      <div class="row" id="cardInit">
+
+      </div>
+    </center>
+    </div>
+  </div>
+
+       
+  <script>
+
+function criaCard(produto){
+    
+    let row = document.getElementById("cardInit");
+    
+
+
+    let card = document.createElement("div");
+    card.className = "card shadow-sm card-scale";
+    card.style = "width: 18rem;";
+
+    let coluna = document.createElement("div");
+    coluna.className = "col-3"
+    coluna.appendChild(card);
+
+    let img = document.createElement("img");
+    img.className = "card-img-top img-card-justify";
+    img.src = produto.imagem;
+    card.appendChild(img);
+
+    let card_body = document.createElement("div");
+    card_body.className = "card-body";
+    let h5 = document.createElement("h5");
+    h5.className = "card-title";
+    h5.innerHTML = produto.nome;
+    card_body.appendChild(h5);
+    let p = document.createElement("p");
+    p.className = "card-text text-truncate";
+    p.innerHTML = produto.descricao;
+    card_body.appendChild(p);
+
+    let a = document.createElement("a");
+    a.className ="btn btn-outline-primary";
+    a.href = "../Produto/Detalhes?id="+produto.id;
+    a.innerHTML = "Detalhes"
+    card_body.appendChild(a);
+
+    card.appendChild(card_body);
+    row.appendChild(coluna);
+}
+
+     fetch("https://localhost:5001/Produto")
+    .then(resposta => resposta.json())
+    .then(data => {
+        data.forEach(function(produto, i) {
+            
+       criaCard(produto)
+
+        })
+    });
+
+  </script>
+

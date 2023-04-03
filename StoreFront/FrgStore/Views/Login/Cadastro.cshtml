@@ -1,0 +1,45 @@
+﻿<br></br>
+<br></br>
+
+<center>
+    <h3>Cadastre-se</h3>
+</center>
+
+
+<div class="container">
+    <a class="btn btn-danger mb-2" asp-controller="Login" asp-action="Index">Voltar</a>
+
+
+
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="nome">
+      </div>
+      <div class="col-12">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="nome@exemplo.com">
+      </div>
+       <div class="col-6">
+        <label for="inputAddress" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" placeholder="senha">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Confirmar Senha</label>
+        <input type="password" class="form-control" id="confirmarSenha" placeholder="confirmar">
+      </div> 
+      <div class="col-6">
+           <button onclick="Cadastro()" class="btn btn-success">Finalizar Cadastro</button>
+      </div>
+    </div>
+</div>
+
+<script>
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
+            var cSenha = document.getElementById("confirmarSenha").value;
+            if(senha != cSenha) alert("Confirmação de Senha NÃO Confere !")
+
+</script>
