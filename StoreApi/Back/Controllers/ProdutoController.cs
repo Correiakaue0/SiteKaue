@@ -18,8 +18,8 @@ namespace Back.Controllers
             _prodServices = prodServices;
         }
 
-        [HttpPost]
-        public Produto Create(Produto prod)
+        [HttpPost("create")]
+        public Produto Create([FromBody] Produto prod)
         {
             var produto = _prodServices.Create(prod);
             return produto;

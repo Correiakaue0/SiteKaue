@@ -7,32 +7,35 @@
 <div class="container">
     <a class="btn btn-danger mb-2" asp-controller="Home" asp-action="Carrossel">Voltar</a>
 
+    <div class="alert" role="alert" id="alertaMsg" style="display:none;">
+    </div>
 
-
-
-    <form class="row g-3" action="" method="">
+    <div class="row g-3">
       <div class="col-md-6">
         <label class="form-label">Nome </label>
-        <input type="text" class="form-control" id="nomeProduto" placeholder="nome do produto">
+        <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do produto ...">
       </div>
       <div class="col-md-6">
-        <label class="form-label">Marca</label>
-        <input type="text" class="form-control" id="marca" placeholder="marca do produto">
+        <label class="form-label">Descrição</label>
+        <input type="text" class="form-control" id="descricao" placeholder="Decrição do produto ...">
       </div>
       <div class="col-6">
-        <label class="form-label">Quantidade</label>
-        <input type="number" class="form-control" id="quantidade" placeholder="0">
+        <label class="form-label">Valor</label>
+        <input type="number" class="form-control" id="valor" placeholder="R$ 0,0">
       </div>
        <div class="col-6">
         <label for="inputAddress" class="form-label">Categoria</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="Ex: Tenis,Camiseta...">
       </div>
       <div class="col-12">
-        <label class="form-label">Descrição</label>
-        <input type="text" class="form-control" id="descricao">
+        <label class="form-label">Imagem</label>
+        <input type="text" class="form-control" id="imagem">
       </div> 
       <div class="col-6">
-           <button type="submit" class="btn btn-success">Finalizar Cadastro</button>
+           <button type="submit" onclick="cadastrarProduto()" class="btn btn-success">Finalizar Cadastro</button>
       </div>
-    </form>
+    </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/js/cadastro-produto.js"></script>
