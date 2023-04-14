@@ -1,4 +1,5 @@
-﻿using FrgStore.Models;
+﻿using FrgStore.Controllers;
+using FrgStore.Models;
 using FrgStore.Models.ProdutoCadastradoViewModel;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
@@ -6,7 +7,7 @@ using System.Text.Json;
 
 namespace Store.Controllers
 {
-    public class ProdutoController : Controller
+    public class ProdutoController : BaseController
     {
         public IActionResult CadastroProduto()
         {
@@ -18,20 +19,24 @@ namespace Store.Controllers
             ViewBag.Title = "Produto";
             return View();
         }
+        public ProdutoCadastradoViewModel DeleteProduto(Produto produto)
+        {
+            RestResponse retorno = ExecutaApi("/Produto/", Method.Delete, produto.Id);
+            var ret = new ProdutoCadastradoViewModel()
+            {
+                Content = retorno.Content,
+                ErrorException = retorno.ErrorException,
+                ErrorMessage = retorno.ErrorMessage,
+                ResponseStatus = retorno.ResponseStatus,
+                StatusCode = retorno.StatusCode
+            };
+            return ret;
+        }
+
         public ProdutoCadastradoViewModel CadastrarProduto(Produto produto)
         {
-            var client = new RestClient("https://localhost:5001");
 
-            var request = new RestRequest($@"/Produto/create", Method.Post)
-            {
-                RequestFormat = DataFormat.Json
-            };
-
-            request.AddHeader("accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddBody(produto);
-
-            RestResponse retorno = client.Execute(request);
+            RestResponse retorno = ExecutaApi("/Produto/create", Method.Post, produto);
 
             var ret = new ProdutoCadastradoViewModel()
             {

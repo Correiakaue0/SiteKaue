@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
+using FrgStore.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Store.Models;
 
 namespace Store.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Carrossel()
         {

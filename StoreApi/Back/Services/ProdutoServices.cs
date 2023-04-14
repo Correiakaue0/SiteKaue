@@ -1,12 +1,14 @@
-﻿using Back.Controllers;
+﻿using Back.Services.Interfaces;
+using Back.ViewModel;
 using Store.Data;
 using Store.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Back.Services
 {
-    public class ProdutoServices : IBaseController<Produto>
+    public class ProdutoServices : IProdutoServices
     {
         private Context _context;
 
@@ -15,7 +17,7 @@ namespace Back.Services
             _context = context;
         }
 
-        public Produto Create(Produto prod)
+        public Produto Create(ProdutoViewModel prod)
         {
             if (prod == null) return null;
             Produto produto = new Produto();
@@ -27,6 +29,11 @@ namespace Back.Services
             _context.Add(produto);
             _context.SaveChanges();
             return produto;
+        }
+
+        public Produto Create(Produto u)
+        {
+            throw new System.NotImplementedException();
         }
 
         public bool Delete(int id)

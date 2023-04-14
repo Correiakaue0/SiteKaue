@@ -1,4 +1,5 @@
 ﻿using Back.Services;
+using Back.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Store.Data;
 using Store.Model;
@@ -9,7 +10,7 @@ namespace Back.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProdutoController : ControllerBase, IBaseController<Produto>
+    public class ProdutoController : ControllerBase
     {
         private ProdutoServices _prodServices;
 
@@ -19,7 +20,7 @@ namespace Back.Controllers
         }
 
         [HttpPost("create")]
-        public Produto Create([FromBody] Produto prod)
+        public Produto Create([FromBody] ProdutoViewModel prod)
         {
             var produto = _prodServices.Create(prod);
             return produto;
@@ -49,7 +50,7 @@ namespace Back.Controllers
         }
 
         [HttpDelete]
-        public bool Delete(int id)
+        public bool Delete([FromBody] int id)
         {
             var del = _prodServices.Delete(id);
             return del;

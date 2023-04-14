@@ -11,7 +11,7 @@ namespace Back.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsuarioController : ControllerBase, IBaseController<Usuario>
+    public class UsuarioController : ControllerBase
     {
         private UsuarioServices _userServices;
 

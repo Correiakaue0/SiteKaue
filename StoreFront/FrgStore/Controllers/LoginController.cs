@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FrgStore.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Store.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         public IActionResult Index()
         {

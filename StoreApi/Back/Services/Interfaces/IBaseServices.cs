@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Back.Controllers
+namespace Back.Services.Interfaces
 {
-    public interface IBaseController<T> where T : class
+    public interface IBaseServices<T> where T : class
     {
         public T Create(T u);
         public List<T> Get();

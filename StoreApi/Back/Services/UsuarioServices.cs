@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Back.Services
 {
-    public class UsuarioServices : IBaseController<Usuario>
+    public class UsuarioServices 
     {
         private Context _context;
 

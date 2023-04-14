@@ -1,5 +1,48 @@
 ﻿<br></br>
 
+<style>
+    #picture__input {
+        display: none;
+    }
+
+    .picture {
+        width: 400px;
+        aspect-ratio: 16/9;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        border: 2px dashed currentcolor;
+        cursor: pointer;
+        font-family: sans-serif;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+    }
+
+        .picture:hover {
+            color: #777;
+            background: #ccc;
+        }
+
+        .picture:active {
+            border-color: turquoise;
+            color: turquoise;
+            background: #eee;
+        }
+
+        .picture:focus {
+            color: #777;
+            background: #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+    .picture__img {
+        max-width: 100%;
+    }
+
+</style>
 <center>
     <h1>Cadastrar Produto</h1>
 </center>
@@ -11,29 +54,33 @@
     </div>
 
     <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">Nome </label>
-        <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do produto ...">
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Descrição</label>
-        <input type="text" class="form-control" id="descricao" placeholder="Decrição do produto ...">
-      </div>
-      <div class="col-6">
-        <label class="form-label">Valor</label>
-        <input type="number" class="form-control" id="valor" placeholder="R$ 0,0">
-      </div>
-       <div class="col-6">
-        <label for="inputAddress" class="form-label">Categoria</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="Ex: Tenis,Camiseta...">
-      </div>
-      <div class="col-12">
-        <label class="form-label">Imagem</label>
-        <input type="text" class="form-control" id="imagem">
-      </div> 
-      <div class="col-6">
-           <button type="submit" onclick="cadastrarProduto()" class="btn btn-success">Finalizar Cadastro</button>
-      </div>
+        <div class="col-md-6">
+            <label class="form-label">Nome </label>
+            <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do produto ...">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" placeholder="Decrição do produto ...">
+        </div>
+        <div class="col-6">
+            <label class="form-label">Valor</label>
+            <input type="number" class="form-control" id="valor" placeholder="R$ 0,0">
+        </div>
+        <div class="col-6">
+            <label for="inputAddress" class="form-label">Categoria</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Ex: Tenis,Camiseta...">
+        </div>
+        <div class="col-12">
+            <label class="form-label">Imagem</label>
+            <label class="picture" for="picture__input" tabIndex="0">
+                <span class="picture__image"></span>
+            </label>
+            <input type="file" name="picture__input" id="picture__input">
+            <input type="text" class="form-control" id="picture__input_text" placeholder="">
+        </div>
+        <div class="col-6">
+            <button type="submit" onclick="cadastrarProduto()" class="btn btn-success">Finalizar Cadastro</button>
+        </div>
     </div>
 </div>
 
