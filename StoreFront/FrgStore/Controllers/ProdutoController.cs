@@ -36,10 +36,11 @@ namespace Store.Controllers
 
             try
             {
-                string[] files = Directory.GetFiles(_enviroment.ContentRootPath + @"\wwwroot\imagensProduto\" , retornoProduto.imagem);
+                var path = _enviroment.ContentRootPath + @"\wwwroot\imagensProduto\" + retornoProduto.imagem;
+                string[] files = Directory.GetFiles(_enviroment.ContentRootPath + @"\wwwroot\imagensProduto\", retornoProduto.imagem);
                 System.IO.File.Delete(files[0]);
             }
-            catch (Exception ex){}
+            catch (Exception ex) { }
 
             var ret = new ProdutoCadastradoViewModel()
             {
@@ -54,12 +55,21 @@ namespace Store.Controllers
 
         public IActionResult CadastrarProduto(Produto produto, IFormFile file)
         {
-            produto.Imagem = file.FileName;
-            ValidarCampos(produto);
 
-            var patch = Path.Combine(_enviroment.ContentRootPath, @"wwwroot\imagensProduto", file.FileName);
+            var imagemName = file.FileName;
+            var patch = Path.Combine(_enviroment.ContentRootPath, @"wwwroot\imagensProduto", imagemName);
+            
+            if (System.IO.File.Exists(patch))
+            {
+                imagemName = Guid.NewGuid().ToString() + file.FileName;
+                patch = Path.Combine(_enviroment.ContentRootPath, @"wwwroot\imagensProduto", imagemName);
+            }
+            produto.Imagem = imagemName;
+            ValidarCampos(produto);
             var fileStream = new FileStream(patch, FileMode.Create);
+            
             file.CopyTo(fileStream);
+            fileStream.Dispose();
 
             RestResponse retorno = ExecutaApi("/Produto/create", Method.Post, produto);
 
@@ -99,8 +109,6 @@ namespace Store.Controllers
             if (produto.Imagem == null)
                 throw new Exception();
 
-            if (produto.Imagem == null)
-                throw new Exception();
         }
     }
 }
