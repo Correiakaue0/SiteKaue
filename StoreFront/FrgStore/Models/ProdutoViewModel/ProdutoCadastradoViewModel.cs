@@ -4,7 +4,7 @@ using System.Net;
 
 namespace FrgStore.Models.ProdutoCadastradoViewModel
 {
-    public class ProdutoCadastradoViewModel
+    public class RetornoAPIViewModel
     {
         public string Content { get; internal set; }
         public Exception ErrorException { get; internal set; }
@@ -21,5 +21,12 @@ namespace FrgStore.Models.ProdutoCadastradoViewModel
         public string descricao { get; set; }
         public string imagem { get; set; }
         public double valor { get; set; }
+    }
+
+    public class CategoriaCadastradoViewModel : RetornoAPIViewModel
+    {
+        public long categoriaId { get; set; }
+        public int codigo { get; set; }
+        public string descricao { get; set; }
     }
 }

@@ -52,36 +52,83 @@
 
     <div class="alert" role="alert" id="alertaMsg" style="display:none;">
     </div>
-<form action="CadastrarProduto" enctype="multipart/form-data" method="post">
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label class="form-label">Nome </label>
-            <input type="text" class="form-control" id="nome" name="Nome" placeholder="Nome do produto ...">
+    <form action="CadastrarProduto" enctype="multipart/form-data" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Nome </label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do produto ...">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Descrição</label>
+                <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Decrição do produto ...">
+            </div>
+            <div class="col-6">
+                <label class="form-label">Valor</label>
+                <input type="number" class="form-control" id="valor" name="valor" placeholder="R$ 0,0">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <label for="categoria" class="form-label">categoria</label>
+                    <div class="col-11">
+                        <select class="form-select" aria-label="Default select example" id="categoriaId" name="categoriaId" placeholder="Ex: Tenis,Camiseta...">
+                            <option value="0" selected>Selecione categoria...</option>
+                        </select>
+
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cadastrarCategoria">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Imagem</label>
+                <label class="picture" for="picture__input" tabIndex="0">
+                    <span class="picture__image"></span>
+                </label>
+                <input type="file" name="file" id="picture__input">
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-success">Finalizar Cadastro</button>
+            </div>
         </div>
-        <div class="col-md-6">
-            <label class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="descricao" name="Descricao" placeholder="Decrição do produto ...">
-        </div>
-        <div class="col-6">
-            <label class="form-label">Valor</label>
-            <input type="number" class="form-control" id="valor" name="Valor" placeholder="R$ 0,0">
-        </div>
-        <div class="col-6">
-            <label for="inputAddress" class="form-label">Categoria</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Ex: Tenis,Camiseta...">
-        </div>
-        <div class="col-12">
-            <label class="form-label">Imagem</label>
-            <label class="picture" for="picture__input" tabIndex="0">
-                <span class="picture__image"></span>
-            </label>
-            <input type="file" name="file" id="picture__input">
-        </div>
-        <div class="col-6">
-            <button type="submit" class="btn btn-success">Finalizar Cadastro</button>
+    </form>
+
+    <!-- Modal Categoria-->
+    <div class="modal fade" id="cadastrarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="alert" role="alert" id="alertaMsgModal" style="display:none;">
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-lg-12" style="text-align:right;">
+                        Ultimo codigo cadastado : 1
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-2">
+                                <label class="form-label">Codigo </label>
+                                <input type="text" class="form-control" id="codigo" name="codigo">
+                            </div>
+                            <div class="col-10">
+                                <label class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="descricaoCategoria" name="descricao">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" onclick="cadastraCategoria()" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
         </div>
     </div>
-</form>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

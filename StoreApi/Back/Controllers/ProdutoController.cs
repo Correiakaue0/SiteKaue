@@ -1,10 +1,8 @@
-﻿using Back.Services;
+﻿using Back.Models;
+using Back.Services;
 using Back.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Store.Data;
-using Store.Model;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Back.Controllers
 {

@@ -32,6 +32,7 @@ namespace Back
             services.AddDbContext<Context>(options => options.UseMySQL(Configuration.GetConnectionString("DbConnection")));
             services.AddScoped<ProdutoServices>();
             services.AddScoped<UsuarioServices>();
+            services.AddScoped<CategoriaServices>();
 
             services.AddCors();
 

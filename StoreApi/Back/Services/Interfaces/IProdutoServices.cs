@@ -1,5 +1,5 @@
-﻿using Back.ViewModel;
-using Store.Model;
+﻿using Back.Models;
+using Back.ViewModel;
 
 namespace Back.Services.Interfaces
 {

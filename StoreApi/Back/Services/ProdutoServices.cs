@@ -1,7 +1,7 @@
-﻿using Back.Services.Interfaces;
+﻿using Back.Models;
+using Back.Services.Interfaces;
 using Back.ViewModel;
 using Store.Data;
-using Store.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +24,7 @@ namespace Back.Services
             produto.Id = produto.Id;
             produto.Nome = prod.Nome;
             produto.Descricao = prod.Descricao;
+            produto.CategoriaId = prod.CategoriaId;
             produto.Imagem = prod.Imagem;
             produto.Valor = prod.Valor;
             _context.Add(produto);
@@ -65,7 +66,17 @@ namespace Back.Services
 
         public List<Produto> Get()
         {
-            List<Produto> produto = _context.Produto.ToList();
+            List<Produto> produto = _context.Produto
+                .Select(x => new Produto
+                {
+                    Id = x.Id,
+                    Categoria = x.Categoria,
+                    CategoriaId = x.CategoriaId,
+                    Nome = x.Nome,
+                    Descricao = x.Descricao,
+                    Valor = x.Valor,    
+                    Imagem = x.Imagem
+                }).ToList();
             return produto;
         }
 

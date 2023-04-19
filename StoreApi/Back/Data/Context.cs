@@ -1,6 +1,5 @@
 ﻿using Back.Models;
 using Microsoft.EntityFrameworkCore;
-using Store.Model;
 
 namespace Store.Data
 {
@@ -9,7 +8,11 @@ namespace Store.Data
         public Context(DbContextOptions<Context> opt) : base(opt)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Categoria> Categoria{ get; set; }
     }
 }

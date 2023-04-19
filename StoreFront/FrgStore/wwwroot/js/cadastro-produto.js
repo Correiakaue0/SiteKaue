@@ -28,41 +28,78 @@ inputFile.addEventListener("change", function (e) {
     }
 });
 
+function cadastraCategoria() {
+    var alertaMsgModal = document.getElementById("alertaMsgModal");
+    var msg = "";
+    var codigo = document.getElementById("codigo").value;
+    if (codigo == "") {
+        msg = "Codigo nao pode ficar vazio <br>";
+    }
+    var descricao = document.getElementById("descricaoCategoria").value;
+    if (descricao == "") {
+        msg = "Descriçao nao pode ficar vazio <br>";
+    }
+    if (msg != "") {
+        alertaMsgModal.style.display = "block";
+        alertaMsgModal.classList.add("alert-warning");
+        alertaMsgModal.innerHTML = msg;
+        return false;
+    }
 
-//function cadastrarProduto() {
-//    debugger
-//    var msg = "";
-//    var alertaMsg = document.getElementById("alertaMsg");
-//    var textoImagem = document.getElementById("picture__input_text").value;
+    var categoria = {
+        codigo: codigo,
+        descricao: descricao
+    };
 
-//    var nome = $("#nomeProduto").val();
-//    if (nome == "") {
-//        msg += "Nome nao pode ser vazio! <br>";
-//    }
-//    var descricao = $("#descricao").val();
-//    if (descricao == "") {
-//        msg += "Descrição nao pode ser vazio! <br>";
-//    }
-//    var valor = $("#valor").val();
-//    if (valor == "") {
-//        msg += "Valor nao pode ser vazio! <br>";
-//    }
-//    var imagem = $("#picture__input").files[0];
-//    if (imagem != "" && textoImagem == "") {
-//        textoImagem = imagem;
-//        if (textoImagem == "") {
-//            msg += "Imagem nao pode ser vazio! <br>";
-//        } 
-//    }
-//    if (imagem == "" && textoImagem == "") {
-//        msg += "Imagem nao pode ser vazio! <br>";
-//    }
+    $.ajax({
+        type: "POST",
+        url: '/Produto/CadastraCategoria',
+        data: JSON.parse(JSON.stringify(categoria, (key, value) =>
+            typeof value === 'bigint'
+                ? value.toString()
+                : value)
+        ),
+        dataType: "json",
+        success: function (t, e, i) {
+            if (t.statusCode == 200) {
+                alertaMsgModal.style.display = "block";
+                alertaMsgModal.classList.remove("alert-warning");
+                alertaMsgModal.classList.add("alert-success");
+                alertaMsgModal.innerHTML = "Categoria cadastrada com sucesso!";
+                MontaCategoria(t);
+            } else {
+                alertaMsgModal.style.display = "block";
+                alertaMsgModal.classList.add("alert-danger");
+                alertaMsgModal.innerHTML = "Categoria não cadastrada com sucesso!";
+            }
 
+            setTimeout(function () {
+                alertaMsgModal.style.display = "none";
+            }, 2500);
+        },
+        error: function (t, e, i) {
+        }
+    });
+}
+function MontaCategoria(categoria) {
+    var form_select = document.getElementById("categoriaId");
 
-//    if (msg != "") {
-//        alertaMsg.style.display = "block";
-//        alertaMsg.classList.add("alert-warning");
-//        alertaMsg.innerHTML = msg;
-//        return false;
-//    }
-//}
+    let option = document.createElement("option");
+    option.value = categoria.categoriaId;
+    option.innerHTML = categoria.descricao;
+
+    form_select.appendChild(option);
+}
+
+function buscaCategoria() {
+    fetch("https://localhost:5001/Categoria")
+        .then(resposta => resposta.json())
+        .then(data => {
+            data.forEach(function (categoria, i) {
+
+                MontaCategoria(categoria)
+
+            })
+        });
+}
+buscaCategoria()
