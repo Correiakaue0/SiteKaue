@@ -1,14 +1,24 @@
 ﻿using FrgStore.Controllers;
 using FrgStore.Models;
 using FrgStore.Models.ProdutoCadastradoViewModel;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
+using System;
+using System.IO;
 using System.Text.Json;
 
 namespace Store.Controllers
 {
     public class ProdutoController : BaseController
     {
+        public readonly IHostingEnvironment _enviroment;
+        public ProdutoController(IHostingEnvironment environment)
+        {
+            _enviroment = environment;
+        }
+
         public IActionResult CadastroProduto()
         {
             ViewBag.Title = "Produto";
@@ -22,6 +32,15 @@ namespace Store.Controllers
         public ProdutoCadastradoViewModel DeleteProduto(Produto produto)
         {
             RestResponse retorno = ExecutaApi("/Produto/", Method.Delete, produto.Id);
+            var retornoProduto = JsonSerializer.Deserialize<ProdutoDTO>(retorno.Content);
+
+            try
+            {
+                string[] files = Directory.GetFiles(_enviroment.ContentRootPath + @"\wwwroot\imagensProduto\" , retornoProduto.imagem);
+                System.IO.File.Delete(files[0]);
+            }
+            catch (Exception ex){}
+
             var ret = new ProdutoCadastradoViewModel()
             {
                 Content = retorno.Content,
@@ -33,8 +52,14 @@ namespace Store.Controllers
             return ret;
         }
 
-        public ProdutoCadastradoViewModel CadastrarProduto(Produto produto)
+        public IActionResult CadastrarProduto(Produto produto, IFormFile file)
         {
+            produto.Imagem = file.FileName;
+            ValidarCampos(produto);
+
+            var patch = Path.Combine(_enviroment.ContentRootPath, @"wwwroot\imagensProduto", file.FileName);
+            var fileStream = new FileStream(patch, FileMode.Create);
+            file.CopyTo(fileStream);
 
             RestResponse retorno = ExecutaApi("/Produto/create", Method.Post, produto);
 
@@ -58,9 +83,24 @@ namespace Store.Controllers
                     imagem = retornoProduto.Imagem,
                     valor = retornoProduto.Valor
                 };
-                return ret;
+                return RedirectToRoute(new { controller = "Home", action = "Carrossel" });
             }
-            return ret;
+            return RedirectToRoute(new { controller = "Produto", action = "CadastroProduto" });
+        }
+
+        private void ValidarCampos(Produto produto)
+        {
+            if (produto.Nome == null)
+                throw new Exception();
+
+            if (produto.Descricao == null)
+                throw new Exception();
+
+            if (produto.Imagem == null)
+                throw new Exception();
+
+            if (produto.Imagem == null)
+                throw new Exception();
         }
     }
 }

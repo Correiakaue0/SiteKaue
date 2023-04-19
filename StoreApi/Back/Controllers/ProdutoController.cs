@@ -50,7 +50,7 @@ namespace Back.Controllers
         }
 
         [HttpDelete]
-        public bool Delete([FromBody] int id)
+        public Produto Delete([FromBody] int id)
         {
             var del = _prodServices.Delete(id);
             return del;

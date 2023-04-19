@@ -6,5 +6,6 @@ namespace Back.Services.Interfaces
     public interface IProdutoServices : IBaseServices<Produto>
     {
         Produto Create(ProdutoViewModel prod);
+        Produto Delete(int id);
     }
 }

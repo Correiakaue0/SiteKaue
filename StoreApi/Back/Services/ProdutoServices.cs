@@ -36,16 +36,16 @@ namespace Back.Services
             throw new System.NotImplementedException();
         }
 
-        public bool Delete(int id)
+        public Produto Delete(int id)
         {
             Produto produto = _context.Produto.FirstOrDefault(x => x.Id == id);
             if (produto != null)
             {
                 _context.Remove(produto);
                 _context.SaveChanges();
-                return true;
+                return produto;
             }
-            return false;
+            return new Produto();
         }
 
         public Produto Edit(int id, Produto New)
@@ -74,6 +74,11 @@ namespace Back.Services
             Produto produto = _context.Produto.FirstOrDefault(p => p.Id == id);
             if (produto == null) return null;
             return produto;
+        }
+
+        bool IBaseServices<Produto>.Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
