@@ -22,137 +22,166 @@
     <!-- boot js -->
     <title>@ViewBag.Title</title>
     <style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      .hover{
-          color:gray;
-      }
-      .hover-red{
-          color:gray;
-      }
-      .hover-red:hover{
-          color:red;
-      }
-      .card-scale:hover{
-          transform: scale(1.1);
-      }
-      .titulo{
-          text-align:center;
-          margin-top:25px;
-          margin-bottom:25px;
-      }
-      .carrossel{
-          object-fit: cover;
-          object-position: 0 80%;
-          height:400px;
-      }
-      .img-card-justify{
-           object-fit: cover;
-          object-position: 0 80%;
-          height:225px;
-      }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .hover {
+            color: gray;
+        }
+
+        .hover-red {
+            color: gray;
+        }
+
+            .hover-red:hover {
+                color: red;
+            }
+
+        .card-scale:hover {
+            transform: scale(1.1);
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .carrossel {
+            object-fit: cover;
+            object-position: 0 80%;
+            height: 400px;
+        }
+
+        .img-card-justify {
+            object-fit: cover;
+            object-position: 0 80%;
+            height: 225px;
+        }
     </style>
 </head>
 <body>
 
-<!-- NavBar -->
-  <header>
-    <div class="px-3 py-2 bg-light shadow bg-body">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <center>
-                <img src="~/images/logoStore.png" width="60%">
-            </center>
-          </a>
-
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            <li>
-              <a asp-controller="Home" asp-action="Carrossel" class="nav-link hover">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" data-bs-toggle="modal" data-bs-target="#FaleConoscoModal" class="nav-link hover">
-                Fale Conosco
-              </a>
-            </li>
-            <li>
-                <div class="dropdown">
-                    <a class="nav-link hover dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorias
+    <!-- NavBar -->
+    <header>
+        <div class="px-3 py-2 bg-light shadow bg-body">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                        <center>
+                            <img src="~/images/logoStore.png" width="60%">
+                        </center>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Tênis</a></li>
-                        <li><a class="dropdown-item" href="#">Camiseta</a></li>
-                        <li><a class="dropdown-item" href="#">Carro</a></li>
+
+                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                        <li>
+                            <a asp-controller="Home" asp-action="Carrossel" class="nav-link hover">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#FaleConoscoModal" class="nav-link hover">
+                                Fale Conosco
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="nav-link hover dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categorias
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownCategoria">
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a asp-controller="Login" asp-action="Index" class="nav-link hover-red">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                </svg>
+                                Sair
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </li>
-            <li>
-              <a asp-controller="Login" asp-action="Index" class="nav-link hover-red">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                </svg>
-                Sair
-              </a>
-            </li>   
-          </ul>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
-<!-- End NavBar -->
-
-<!-- Modal -->
-<form asp-controller="Produto" asp-action="Detalhes" method="">
-    <div class="modal fade" id="FaleConoscoModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Fale Conosco</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-                <div class="mb-3">
-                  <label class="form-label">Nome Completo</label>
-                  <input type="text" class="form-control" id="nomeModal">
+    </header>
+    <!-- End NavBar -->
+    <!-- Modal -->
+    <form asp-controller="Produto" asp-action="Detalhes" method="">
+        <div class="modal fade" id="FaleConoscoModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Fale Conosco</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="nomeModal">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email </label>
+                            <input type="email" class="form-control" id="emailModal" placeholder="nome@exemplo.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="mensagemModal" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-success">Enviar</button>
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Email </label>
-                  <input type="email" class="form-control" id="emailModal" placeholder="nome@exemplo.com">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Mensagem</label>
-                  <textarea class="form-control" id="mensagemModal" rows="3"></textarea>
-                </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-success">Enviar</button>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-</form>
-<!-- End Modal -->
+    </form>
+    <!-- End Modal -->
 
-    <div >
+    <div>
         @RenderBody()
     </div>
 
-<div class="sticky-bottom">
-    <hr>
-    <footer class="container">
-        <p class="copyright">&copy; Copyright Kaue - 2022</p>
-    </footer>
-</div>
+    <div class="sticky-bottom">
+        <hr>
+        <footer class="container">
+            <p class="copyright">&copy; Copyright Kaue - 2022</p>
+        </footer>
+    </div>
 
 </body>
 </html>
+<script>
+
+fetch("https://localhost:5001/Categoria")
+.then(resposta => resposta.json())
+.then(data => {
+    data.forEach(function (categoria, i) {
+        criaDropdownCategoria(categoria);
+
+    })
+});
+
+function criaDropdownCategoria(categoria){
+    var dropdownCategoria = document.getElementById("dropdownCategoria");
+
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.className = "dropdown-item";
+    a.href = "";
+    a.innerText = categoria.descricao;
+
+
+    li.appendChild(a);
+    dropdownCategoria.appendChild(li);
+ }
+
+</script>
